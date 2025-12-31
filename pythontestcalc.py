@@ -15,7 +15,7 @@ class Calculator:
             '7', '8', '9', '/',
             '4', '5', '6', '*',
             '1', '2', '3', '-',
-            '0', '.', '=', '+'
+            '0', '.', '=', '+',
         ]
 
         # Create buttons
@@ -27,6 +27,9 @@ class Calculator:
             else:
                 tk.Button(root, text=button, command=lambda b=button: self.entry.insert(tk.END, b)).grid(row=row, column=col, padx=5, pady=5, sticky='nsew')
 
+        # CLR button
+        tk.Button(root, text='CLR', command=self.clear).grid(row=5, column=0, padx=5, pady=5, sticky='nsew')
+
     def calculate(self):
         try:
             result = eval(self.entry.get())
@@ -35,6 +38,9 @@ class Calculator:
         except Exception as e:
             self.entry.delete(0, tk.END)
             self.entry.insert(tk.END, "Error")
+
+    def clear(self):
+        self.entry.delete(0, tk.END)
 
 def run_calculator():
     root = tk.Tk()
